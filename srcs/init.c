@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   init_cub3d.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/25 15:51:40 by abnsila           #+#    #+#             */
-/*   Updated: 2025/07/07 12:45:49 by abnsila          ###   ########.fr       */
+/*   Created: 2025/07/07 12:21:45 by abnsila           #+#    #+#             */
+/*   Updated: 2025/07/07 12:22:05 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-int	main(int ac, char **av)
+void	init_cub(t_cub *cub)
 {
-	t_cub	cub;
-
-	(void)ac;
-	(void)av;
-	init_cub(&cub);
-	init_events(&cub);
-	mlx_loop(cub.mlx);
-	ft_exit(&cub);
-	return (EXIT_SUCCESS);
+	srand(time(NULL));
+	cub->mlx = mlx_init();
+	if (!cub->mlx)
+		exit(EXIT_FAILURE);
+	cub->width = WIDTH;
+	cub->height = HEIGHT;
+	cub->win = mlx_new_window(cub->mlx, cub->width,
+			cub->height, "Cub-3d");
+	if (!cub->win)
+		ft_exit(cub);
+	cub->img.img_ptr = NULL;
 }
