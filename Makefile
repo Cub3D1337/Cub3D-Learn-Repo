@@ -10,7 +10,7 @@ SRC_DIR =		./srcs
 INCLUDES =		-I${INC_DIR} -I./Libft/includes
 LIBFT =			$(LIBFT_DIR)/libft.a
 
-SRCS =			$(SRC_DIR)/cub3d.c
+SRCS =			$(SRC_DIR)/cub3d.c $(SRC_DIR)/init.c $(SRC_DIR)/cleanup.c $(SRC_DIR)/events.c
 				
 OBJS =			$(SRCS:.c=.o)
 
@@ -19,7 +19,7 @@ all:			$(LIBFT) $(NAME)
 $(NAME):		$(OBJS)
 					$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(INCLUDES) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME) $(LDFLAGS)
 
-%.o: %.c		${INC_DIR}/cub3d.h ${INC_DIR}/includes.h
+%.o: %.c		${INC_DIR}/cub3d.h ${INC_DIR}/includes.h ${INC_DIR}/settings.h ${INC_DIR}/typedef.h 
 					$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(LIBFT):
