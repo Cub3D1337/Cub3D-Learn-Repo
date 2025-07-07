@@ -6,11 +6,87 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:51:40 by abnsila           #+#    #+#             */
-/*   Updated: 2025/07/07 12:45:49 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/07/07 20:34:44 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
+
+void	draw_player(t_cub *cub)
+{
+	int	line_len;
+	int	i;
+	int	px;
+	int	py;
+
+	draw_square(cub, (int)cub->ply.x, (int)cub->ply.y, cub->ply.size, 0xffff00);
+	// Draw facing line
+	line_len = 30;
+	i = 0;
+	// Draw simple line from center of player to (x2, y2)
+	while (i < line_len)
+	{
+		px = (cub->ply.x + (cub->ply.size / 2)) + cos(cub->ply.angle) * i;
+		py = (cub->ply.y + (cub->ply.size / 2)) + sin(cub->ply.angle) * i;
+		if (px >= 0 && px < cub->width && py >= 0 && py < cub->height)
+			put_pixel(cub, px, py, 0xff0000);
+		i++;
+	}
+}
+
+void	draw_map(t_cub *cub)
+{
+	int	x;
+	int	y;
+	int	color;
+
+	y = 0;
+	while (y < MAP_HEIGHT)
+	{
+		x = 0;
+		while (x < MAP_WIDTH)
+		{
+			if (cub->map[y][x] == 1)
+				color = 0xffffff;
+			else
+				color = 0x000000;
+
+			draw_square(cub, x * MAP_SIZE, y * MAP_SIZE, MAP_SIZE, color);
+			x++;
+		}
+		y++;
+	}
+}
+
+
+void	draw(t_cub *cub)
+{
+	ft_memset(cub->img.img_pixels_ptr, 0,
+		cub->height * cub->img.line_length);
+	draw_map(cub);
+	draw_player(cub);
+	raycast(cub);
+	mlx_put_image_to_window(cub->mlx, cub->win,
+		cub->img.img_ptr, 0, 0);
+}
+
+void	init_map(t_cub *cub)
+{
+	int tmp[MAP_HEIGHT][MAP_WIDTH] = {
+		{1, 1, 1, 1, 1, 1, 1, 1},
+		{1, 0, 0, 0, 0, 0, 0, 1},
+		{1, 0, 1, 0, 0, 0, 0, 1},
+		{1, 0, 0, 0, 0, 1, 0, 1},
+		{1, 1, 1, 0, 0, 0, 0, 1},
+		{1, 0, 0, 0, 1, 0, 0, 1},
+		{1, 0, 0, 0, 0, 0, 0, 1},
+		{1, 1, 1, 1, 1, 1, 1, 1}
+	};
+
+	for (int i = 0; i < MAP_HEIGHT; i++)
+		for (int j = 0; j < MAP_WIDTH; j++)
+			cub->map[i][j] = tmp[i][j];
+}
 
 int	main(int ac, char **av)
 {
@@ -19,6 +95,8 @@ int	main(int ac, char **av)
 	(void)ac;
 	(void)av;
 	init_cub(&cub);
+	init_map(&cub);
+	init_image_buffer(&cub);
 	init_events(&cub);
 	mlx_loop(cub.mlx);
 	ft_exit(&cub);

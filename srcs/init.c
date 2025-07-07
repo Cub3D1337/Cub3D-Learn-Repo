@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_cub3d.c                                       :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 12:21:45 by abnsila           #+#    #+#             */
-/*   Updated: 2025/07/07 12:22:05 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/07/07 20:06:40 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,24 @@ void	init_cub(t_cub *cub)
 	if (!cub->win)
 		ft_exit(cub);
 	cub->img.img_ptr = NULL;
+	cub->ply.x = HEIGHT / 2;
+	cub->ply.y = HEIGHT / 2;
+	cub->ply.size = 10;
+	cub->ply.move_up = false;
+	cub->ply.move_down = false;
+	cub->ply.rotate_left = false;
+	cub->ply.rotate_right = false;
+	cub->ply.angle = (3 * M_PI) / 2;
 }
+
+void	init_image_buffer(t_cub *cub)
+{
+	if (cub->img.img_ptr)
+		mlx_destroy_image(cub->mlx, cub->img.img_ptr);
+	cub->img.img_ptr = mlx_new_image(cub->mlx,
+			cub->width, cub->height);
+	cub->img.img_pixels_ptr = mlx_get_data_addr(cub->img.img_ptr,
+			&cub->img.bits_per_pixel, &cub->img.line_length,
+			&cub->img.endian);
+}
+

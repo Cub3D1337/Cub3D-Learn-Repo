@@ -6,27 +6,36 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 12:15:00 by abnsila           #+#    #+#             */
-/*   Updated: 2025/07/07 12:16:04 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/07/07 20:43:26 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SETTINGS_H
 # define SETTINGS_H
 
-# define WIDTH 800
-# define HEIGHT 600
-# define MOVE_FACTOR 0.2
+# define WIDTH 1440
+# define HEIGHT 720
+# define SPEED 1
+# define ROT_SPEED 0.025
+
+# define MAP_HEIGHT 8
+# define MAP_WIDTH  8
+# define MAP_SIZE  90
 
 enum e_events_hooks
 {
+	ON_KEYDOWN = 2,
+	ON_KEYUP = 3,
 	ON_MOUSEMOVE = 6,
 	ON_DESTROY = 17,
 };
 
 enum e_events_masks
 {
+	DestroyNotifyMask = 0L,
+	KeyPressMask = 1L << 0,
+	KeyReleaseMask = 1L << 1,
 	PointerMotionMask = 1L << 6,
-	DestroyNotify = 0L,
 };
 
 enum e_events_inputs
@@ -42,7 +51,11 @@ enum e_events_inputs
 	ESCAPE_KEY = 65307,
 	SHIFT_KEY = 65505,
 	SPACE_KEY = 32,
-	h_KEY = 104,
+	H_KEY = 104,
+	W_KEY = 119,
+	A_KEY = 97,
+	S_KEY = 115,
+	D_KEY = 100,
 };
 
 #endif
