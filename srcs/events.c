@@ -6,12 +6,13 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 10:57:35 by abnsila           #+#    #+#             */
-/*   Updated: 2025/07/07 21:44:34 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/07/07 21:46:09 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
+// TODO: Split those
 void	legal_move(t_cub *cub, double new_x, double	new_y)
 {
 	int map_x1 = new_x / MAP_SIZE;
