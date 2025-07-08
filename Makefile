@@ -10,7 +10,7 @@ SRC_DIR =		./srcs
 INCLUDES =		-I${INC_DIR} -I./Libft/includes
 LIBFT =			$(LIBFT_DIR)/libft.a
 
-SRCS =			$(SRC_DIR)/cub3d.c $(SRC_DIR)/init.c $(SRC_DIR)/cleanup.c $(SRC_DIR)/events.c $(SRC_DIR)/draw.c
+SRCS =			$(SRC_DIR)/cub3d.c $(SRC_DIR)/init.c $(SRC_DIR)/cleanup.c $(SRC_DIR)/events.c $(SRC_DIR)/draw.c $(SRC_DIR)/utils.c
 				
 OBJS =			$(SRCS:.c=.o)
 
