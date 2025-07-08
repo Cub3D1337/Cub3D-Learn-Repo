@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 12:15:00 by abnsila           #+#    #+#             */
-/*   Updated: 2025/07/07 20:43:26 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/07/08 12:57:20 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 
 # define WIDTH 1440
 # define HEIGHT 720
-# define SPEED 1
-# define ROT_SPEED 0.025
+# define SPEED 0.25
+# define ROT_SPEED 0.015
 
 # define MAP_HEIGHT 8
 # define MAP_WIDTH  8
-# define MAP_SIZE  90
+# define MAP_SIZE  10
 
 enum e_events_hooks
 {
