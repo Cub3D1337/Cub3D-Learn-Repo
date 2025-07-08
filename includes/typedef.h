@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 12:09:37 by abnsila           #+#    #+#             */
-/*   Updated: 2025/07/07 18:22:24 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/07/08 11:23:49 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ typedef struct s_cub
 	t_img		img;
 	t_player	ply;
 	int			map[MAP_HEIGHT][MAP_WIDTH];
+	double		last_time;
+	int			frames;
+	double		last_frame_time;
 }				t_cub;
 
 #endif
