@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 12:21:45 by abnsila           #+#    #+#             */
-/*   Updated: 2025/07/07 20:06:40 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/07/08 12:47:51 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,18 @@ void	init_cub(t_cub *cub)
 	if (!cub->win)
 		ft_exit(cub);
 	cub->img.img_ptr = NULL;
-	cub->ply.x = HEIGHT / 2;
-	cub->ply.y = HEIGHT / 2;
-	cub->ply.size = 10;
+	cub->ply.x = (MAP_WIDTH * MAP_SIZE) / 2;
+	cub->ply.y = (MAP_HEIGHT * MAP_SIZE) / 2;
+	cub->ply.size = 5;
 	cub->ply.move_up = false;
 	cub->ply.move_down = false;
 	cub->ply.rotate_left = false;
 	cub->ply.rotate_right = false;
 	cub->ply.angle = (3 * M_PI) / 2;
+	// Utils
+	cub->last_time = 0.0;
+	cub->frames = 0;
+	cub->last_frame_time = 0.0;
 }
 
 void	init_image_buffer(t_cub *cub)
