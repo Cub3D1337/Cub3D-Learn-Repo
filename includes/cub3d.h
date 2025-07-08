@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:53:45 by abnsila           #+#    #+#             */
-/*   Updated: 2025/07/07 20:25:38 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/07/08 11:47:27 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,15 @@ void	draw_player(t_cub *cub);
 void	draw_map(t_cub *cub);
 // Raycasting Draw
 t_bool	touch(t_cub *cub, double x, double y);
-void	draw_ray(t_cub *cub, double start_x, int i);
-void	raycast(t_cub *cub);
+void	draw_ray(t_cub *cub, double ray_angle, int i, t_bool build);
+void	raycast(t_cub *cub, t_bool build);
 void	draw(t_cub *cub);
 
 // Events
 void	init_events(t_cub *cub);
+
+// Utils
+double	get_time_ms(void);
 
 // Cleanup
 void	destroy_cub(t_cub *cub);
