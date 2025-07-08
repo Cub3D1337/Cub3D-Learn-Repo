@@ -6,31 +6,28 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 10:57:35 by abnsila           #+#    #+#             */
-/*   Updated: 2025/07/07 21:46:09 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/07/08 13:00:45 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-// TODO: Split those
-void	legal_move(t_cub *cub, double new_x, double	new_y)
+void	check_edges(t_cub *cub, double new_x, double	new_y)
 {
-	int map_x1 = new_x / MAP_SIZE;
-	int map_y1 = new_y / MAP_SIZE;
-
-	int map_x2 = (new_x + cub->ply.size - 1) / MAP_SIZE;
-	int map_y2 = new_y / MAP_SIZE;
-
-	int map_x3 = new_x / MAP_SIZE;
-	int map_y3 = (new_y + cub->ply.size - 1) / MAP_SIZE;
-
-	int map_x4 = (new_x + cub->ply.size - 1) / MAP_SIZE;
-	int map_y4 = (new_y + cub->ply.size - 1) / MAP_SIZE;
-
-	if (cub->map[map_y1][map_x1] == 0 &&
-		cub->map[map_y2][map_x2] == 0 &&
-		cub->map[map_y3][map_x3] == 0 &&
-		cub->map[map_y4][map_x4] == 0)
+	int	ply_corners[4][2];
+	
+	ply_corners[0][0] = new_x / MAP_SIZE;
+	ply_corners[0][1] = new_y / MAP_SIZE;
+	ply_corners[1][0] = (new_x + cub->ply.size - 1) / MAP_SIZE;
+	ply_corners[1][1] = new_y / MAP_SIZE;
+	ply_corners[2][0] = new_x / MAP_SIZE;
+	ply_corners[2][1] = (new_y + cub->ply.size - 1) / MAP_SIZE;
+	ply_corners[3][0] = (new_x + cub->ply.size - 1) / MAP_SIZE;
+	ply_corners[3][1] = (new_y + cub->ply.size - 1) / MAP_SIZE;
+	if (cub->map[ply_corners[0][1]][ply_corners[0][0]] == 0 &&
+		cub->map[ply_corners[1][1]][ply_corners[1][0]] == 0 &&
+		cub->map[ply_corners[2][1]][ply_corners[2][0]] == 0 &&
+		cub->map[ply_corners[3][1]][ply_corners[3][0]] == 0)
 	{
 		cub->ply.x = new_x;
 		cub->ply.y = new_y;
@@ -45,7 +42,7 @@ void	move(t_cub *cub)
 	// Update the rotation angle A, D
 	if (cub->ply.rotate_left)
 		cub->ply.angle -= ROT_SPEED;
-	if (cub->ply.rotate_right)
+	else if (cub->ply.rotate_right)
 		cub->ply.angle += ROT_SPEED;
 	//TODO: You need to understand the Normalize angle to 0 ~ 2π
 	if (cub->ply.angle < 0)
@@ -67,34 +64,47 @@ void	move(t_cub *cub)
 		new_x -= cos(cub->ply.angle) * SPEED;
 		new_y -= sin(cub->ply.angle) * SPEED;
 	}
-	legal_move(cub, new_x, new_y);
+	check_edges(cub, new_x, new_y);
 }
 
-void	raycast(t_cub *cub)
+void	raycast(t_cub *cub, t_bool build)
 {
 	double	fraction;
-	double	start_x;
+	double	ray_angle;
 	int		i;
 
+	// Only draw on right side
 	fraction = M_PI / 3 / cub->width;
-	start_x = cub->ply.angle - M_PI / 6;
+	ray_angle = cub->ply.angle - M_PI / 6;
 	i = 0;
 	while (i < cub->width)
 	{
-		draw_ray(cub, start_x, i);
-		start_x += fraction;
+		draw_ray(cub, ray_angle, i, build);
+		ray_angle += fraction;
 		i++;
 	}
 }
 
-int	ft_loop_hook(t_cub *cub)
+int ft_loop_hook(t_cub *cub)
 {
+	double	current;
+
 	if (!cub || !cub->img.img_ptr)
 		ft_exit(cub);
+	// Increment frame
+	cub->frames++;
+	current = get_time_ms();
+	if (current - cub->last_time >= 1000.0)
+	{
+		printf("FPS: %d\n", cub->frames);
+		cub->frames = 0;
+		cub->last_time = current;
+	}
 	move(cub);
 	draw(cub);
 	return (EXIT_SUCCESS);
 }
+
 
 int	ft_key_press(int keycode, t_cub *cub)
 {
