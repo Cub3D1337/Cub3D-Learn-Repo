@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:53:45 by abnsila           #+#    #+#             */
-/*   Updated: 2025/07/08 11:47:27 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/07/09 18:09:33 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@ t_bool	touch(t_cub *cub, double x, double y);
 void	draw_ray(t_cub *cub, double ray_angle, int i, t_bool build);
 void	raycast(t_cub *cub, t_bool build);
 void	draw(t_cub *cub);
+
+//DDA
+t_pointF dda(t_cub *cub, t_pointF start, double rayDirX, double rayDirY);
+// t_pointF	dda(t_cub *cub, t_pointF start, double rayDirX, double rayDirY, double *perp_dist);
 
 // Events
 void	init_events(t_cub *cub);

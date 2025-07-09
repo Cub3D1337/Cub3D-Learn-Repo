@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 12:09:37 by abnsila           #+#    #+#             */
-/*   Updated: 2025/07/08 11:23:49 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/07/09 16:04:06 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,19 @@ typedef struct s_img
 	int		line_length;
 	int		endian;
 }				t_img;
+
+typedef struct s_pointI
+{
+	int	x;
+	int	y;
+}				t_pointI;
+
+typedef struct s_pointF
+{
+	double	x;
+	double	y;
+}				t_pointF;
+
 
 typedef struct s_player
 {

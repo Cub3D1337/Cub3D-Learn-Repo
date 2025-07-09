@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 20:06:22 by abnsila           #+#    #+#             */
-/*   Updated: 2025/07/08 14:55:21 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/07/09 18:18:28 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,29 +71,57 @@ void	draw_line(t_cub *cub, double ray_x, double ray_y, int i)
 	}
 }
 
-void	draw_ray(t_cub *cub, double ray_angle, int i, t_bool build)
+void draw_ray(t_cub *cub, double ray_angle, int x, t_bool build)
 {
-	(void)i;
-	double	ray_x;
-	double	ray_y;
-	double	cos_angle;
-	double	sin_angle;
+	t_pointF start;
+	t_pointF hit;
+	double perp_dist;
 
-	// The ray start from the player center
-	ray_x = cub->ply.x + cub->ply.size / 2.0;
-	ray_y = cub->ply.y + cub->ply.size / 2.0;
-	// Get current angle cos and sin
-	cos_angle = cos(ray_angle);
-	sin_angle = sin(ray_angle);
-	while (!touch(cub, ray_x, ray_y))
-	{
-		put_pixel(cub, ray_x, ray_y, 0x00ff00);
-		ray_x += cos_angle * 0.1;
-		ray_y += sin_angle * 0.1;
-	}
+	start.x = cub->ply.x + cub->ply.size / 2.0;
+	start.y = cub->ply.y + cub->ply.size / 2.0;
+
+	double rayDirX = cos(ray_angle);
+	double rayDirY = sin(ray_angle);
+
+	hit = dda(cub, start, rayDirX, rayDirY, &perp_dist);
+
+	// Remove fish-eye effect
+	double corrected_dist = perp_dist * cos(ray_angle - cub->ply.angle);
+
+	double line_height = (MAP_SIZE / corrected_dist) * (cub->width / 2);
+	int draw_start = (cub->height - line_height) / 2;
+	int draw_end = draw_start + line_height;
+
 	if (build)
-		draw_line(cub, ray_x, ray_y, i);
+	{
+		for (int y = draw_start; y < draw_end; y++)
+			put_pixel(cub, x, y, 0x0000ff);
+	}
 }
+
+// void	draw_ray(t_cub *cub, double ray_angle, int i, t_bool build)
+// {
+// 	(void)i;
+// 	double	ray_x;
+// 	double	ray_y;
+// 	double	cos_angle;
+// 	double	sin_angle;
+
+// 	// The ray start from the player center
+// 	ray_x = cub->ply.x + cub->ply.size / 2.0;
+// 	ray_y = cub->ply.y + cub->ply.size / 2.0;
+// 	// Get current angle cos and sin
+// 	cos_angle = cos(ray_angle);
+// 	sin_angle = sin(ray_angle);
+// 	while (!touch(cub, ray_x, ray_y))
+// 	{
+// 		put_pixel(cub, ray_x, ray_y, 0x00ff00);
+// 		ray_x += cos_angle * 0.1;
+// 		ray_y += sin_angle * 0.1;
+// 	}
+// 	if (build)
+// 		draw_line(cub, ray_x, ray_y, i);
+// }
 
 void	draw_square(t_cub *cub, int x, int y, int size, int color)
 {
