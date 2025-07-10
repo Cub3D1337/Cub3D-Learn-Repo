@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 10:57:35 by abnsila           #+#    #+#             */
-/*   Updated: 2025/07/08 13:00:45 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/07/10 19:23:18 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,10 @@ int ft_loop_hook(t_cub *cub)
 	// Increment frame
 	cub->frames++;
 	current = get_time_ms();
+	
 	if (current - cub->last_time >= 1000.0)
 	{
-		printf("FPS: %d\n", cub->frames);
+		cub->fps = cub->frames;     // Store the counted frames before resetting
 		cub->frames = 0;
 		cub->last_time = current;
 	}
