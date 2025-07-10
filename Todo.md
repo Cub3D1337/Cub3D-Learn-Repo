@@ -23,3 +23,7 @@ I do:
 Sy = √1**2 + (dx/dy)**2
 so;
 c = dy * Sy
+
+## Sources
+[ DDA Raycasting algorithm ](https://www.youtube.com/watch?v=IDmWuSrEkow&ab_channel=kitrofimov)
+
