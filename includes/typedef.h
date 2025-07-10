@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 12:09:37 by abnsila           #+#    #+#             */
-/*   Updated: 2025/07/09 16:04:06 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/07/10 19:46:07 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,20 @@ typedef struct s_cub
 	int			map[MAP_HEIGHT][MAP_WIDTH];
 	double		last_time;
 	int			frames;
+	int			fps;
 	double		last_frame_time;
 }				t_cub;
+
+typedef struct s_dda
+{
+	t_pointI	map;
+	t_pointF	unit;
+	t_pointF	hypotenuse_dist;
+	t_pointI	step;
+	t_pointF	hit_point;
+	t_bool		hit;
+	int			side;
+	int			max_steps;
+}				t_dda;
 
 #endif
