@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 19:59:45 by abnsila           #+#    #+#             */
-/*   Updated: 2025/07/10 20:00:23 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/07/16 09:47:58 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ t_pointF	dda(t_cub *cub, t_pointF ply_pos, t_pointF ray_dir, double *out_dist)
 // x = Opposite    y = Adjacent    c = Hypotenuse
 
 // [1] For the first intersection
-//? So the y = 1 unit - py, now we know the Adjacent lenght (because the start position my be in the middle of the unit square)
+//? So the y = 1 unit - py, now we know the Adjacent lenght (because the start position may be in the middle of the unit square)
 // sin(O) = Adjacent / Hypotenuse , sin(O) = (1 - py) / c
 // c = (1 - py) / sin(O)
 // cos(O) = Opposite / Hypotenuse, cos(O) = x / c
@@ -137,7 +137,7 @@ t_pointF	dda(t_cub *cub, t_pointF ply_pos, t_pointF ray_dir, double *out_dist)
 // x = Opposite    y = Adjacent    c = Hypotenuse
 
 // [1] For the first intersection
-//? So the x = 1 unit - px, now we know the Opposite lenght (because the start position my be in the middle of the unit square)
+//? So the x = 1 unit - px, now we know the Opposite lenght (because the start position may be in the middle of the unit square)
 // cos(O) = (1 - px) / c
 // c = (1 - px) / cos(O)
 // sin(O) = y / c

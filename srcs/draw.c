@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 20:06:22 by abnsila           #+#    #+#             */
-/*   Updated: 2025/07/10 19:38:00 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/07/16 06:57:53 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void draw_ray(t_cub *cub, double ray_angle, int x, t_bool build)
 	ray_dir.y = sin(ray_angle);
 
 	hit_point = dda_algo(cub, ply_pos, ray_dir, &perp_dist);
+	(void)hit_point; // TODO: Understand the fish-eye effect
 
 	// Remove fish-eye effect
 	// double corrected_dist = perp_dist * cos(ray_angle - cub->ply.angle);

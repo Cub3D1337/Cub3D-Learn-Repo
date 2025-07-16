@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:51:40 by abnsila           #+#    #+#             */
-/*   Updated: 2025/07/10 20:05:11 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/07/15 06:36:53 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	draw_player(t_cub *cub)
 
 	draw_square(cub, (int)cub->ply.x, (int)cub->ply.y, cub->ply.size, 0xffff00);
 	// Draw facing line
-	line_len = 30;
+	line_len = 20;
 	i = 0;
 	// Draw simple line from center of player to (x2, y2)
 	while (i < line_len)
