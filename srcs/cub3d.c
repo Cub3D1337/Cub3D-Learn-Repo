@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:51:40 by abnsila           #+#    #+#             */
-/*   Updated: 2025/07/15 06:36:53 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/07/17 11:26:22 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	draw(t_cub *cub)
 	ft_memset(cub->img.img_pixels_ptr, 0,
 		cub->height * cub->img.line_length);
 	raycast(cub, true);
-	draw_map(cub);
+	// draw_map(cub);
 	// raycast(cub, false);
 	draw_player(cub);
 	fps_notif = ft_conststrjoin(ft_strdup("FPS: "), ft_itoa(cub->fps));
