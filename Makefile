@@ -5,7 +5,7 @@ LDFLAGS =		-L./Libft -lft
 
 INC_DIR =		./includes
 LIBFT_DIR =		./Libft
-SRC_DIR =		./srcs
+SRC_DIR =		./srcs_V1
 
 INCLUDES =		-I${INC_DIR} -I./Libft/includes
 LIBFT =			$(LIBFT_DIR)/libft.a
@@ -20,7 +20,7 @@ $(NAME):		$(OBJS)
 					$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(INCLUDES) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME) $(LDFLAGS)
 
 %.o: %.c		${INC_DIR}/cub3d.h ${INC_DIR}/includes.h ${INC_DIR}/settings.h ${INC_DIR}/typedef.h 
-					$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+					$(CC) $(CFLAGS) $(INCLUDES) -O3 -c $< -o $@
 
 $(LIBFT):
 				make -C $(LIBFT_DIR)

@@ -33,7 +33,7 @@ $(NAME): $(OBJS)
 	$(LIBC) $(NAME) $(OBJS)
 
 %.o: %.c ${INCLUDES}/libft.h ${INCLUDES}/ft_printf.h ${INCLUDES}/get_next_line.h ${INCLUDES}/malloc.h ${INCLUDES}/t_bool.h ${INCLUDES}/array.h ${INCLUDES}/fdprintf.h
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) -O3 -c $< -o $@
 
 clean:
 	$(RM) $(OBJS)
