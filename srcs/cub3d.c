@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 15:51:40 by abnsila           #+#    #+#             */
-/*   Updated: 2025/07/17 11:26:22 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/07/19 12:05:15 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,25 +36,24 @@ void	draw_player(t_cub *cub)
 
 void	draw_map(t_cub *cub)
 {
-	int	x;
-	int	y;
-	int	color;
+	t_pointI	pos;
+	int			color;
 
-	y = 0;
-	while (y < MAP_HEIGHT)
+	pos.y = 0;
+	while (pos.y < MAP_HEIGHT)
 	{
-		x = 0;
-		while (x < MAP_WIDTH)
+		pos.x = 0;
+		while (pos.x < MAP_WIDTH)
 		{
-			if (cub->map[y][x] == 1)
+			if (cub->map[pos.y][pos.x] == 1)
 				color = 0xffffff;
 			else
 				color = 0x000000;
 
-			draw_square(cub, x * MAP_SIZE, y * MAP_SIZE, MAP_SIZE, color);
-			x++;
+			draw_square(cub, pos.x * MAP_SIZE, pos.y * MAP_SIZE, MAP_SIZE, color);
+			pos.x++;
 		}
-		y++;
+		pos.y++;
 	}
 }
 
@@ -65,7 +64,7 @@ void	draw(t_cub *cub)
 	ft_memset(cub->img.img_pixels_ptr, 0,
 		cub->height * cub->img.line_length);
 	raycast(cub, true);
-	// draw_map(cub);
+	draw_map(cub);
 	// raycast(cub, false);
 	draw_player(cub);
 	fps_notif = ft_conststrjoin(ft_strdup("FPS: "), ft_itoa(cub->fps));

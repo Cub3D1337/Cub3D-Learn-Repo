@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 20:06:22 by abnsila           #+#    #+#             */
-/*   Updated: 2025/07/16 13:40:09 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/07/19 11:58:10 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,9 +102,6 @@ void draw_ray(t_cub *cub, double ray_angle, int x, t_bool build)
 		for (int y = draw_start; y < draw_end; y++)
 			put_pixel(cub, x, y, 0x0000ff);
 	}
-
-	//TODO: Show hit point im hole map
-	draw_square(cub, hit_point.x, hit_point.y, MAP_SIZE, 0x00ff00);
 }
 
 void	draw_square(t_cub *cub, int x, int y, int size, int color)

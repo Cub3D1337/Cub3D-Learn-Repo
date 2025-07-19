@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 10:57:35 by abnsila           #+#    #+#             */
-/*   Updated: 2025/07/10 19:23:18 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/07/19 13:10:01 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,23 +67,45 @@ void	move(t_cub *cub)
 	check_edges(cub, new_x, new_y);
 }
 
+// TODO: 2.5D raycasting
 void	raycast(t_cub *cub, t_bool build)
 {
+	//? Use double instead of float for higher precision in ray calculations,
+	//? since we're not highly memory-constrained and need accurate distances
+	double	fov;
 	double	fraction;
 	double	ray_angle;
 	int		i;
 
-	// Only draw on right side
-	fraction = M_PI / 3 / cub->width;
-	ray_angle = cub->ply.angle - M_PI / 6;
+	// Set the Field of View (FOV) — here it's 60 degrees (PI / 3 radians)
+	// This defines the total angle of the player's vision cone.
+	fov = M_PI / 3;
+
+	// Compute the angle increment between rays
+	// Divide the FOV by the screen width so each pixel column gets a unique ray
+	fraction = fov / cub->width;
+
+	// Set the starting ray angle at the left edge of the FOV
+	// Player's angle minus half of FOV centers the FOV around the player direction
+	ray_angle = cub->ply.angle - fov / 2;
+
 	i = 0;
+	// Loop through each vertical column of the screen
 	while (i < cub->width)
 	{
+		// Debug info: show index, angle increment, and current ray angle in degrees/radians
+		printf("i: %d      frac: %.4f      r_a: %.4f radians   (%.4f degrees)\n",
+			i, fraction, ray_angle, ray_angle * 180 / M_PI);
+
+		// Cast a ray for this angle and draw a vertical line based on wall hit distance
 		draw_ray(cub, ray_angle, i, build);
+
+		// Increment the angle by one ray step (fraction) for next screen column
 		ray_angle += fraction;
 		i++;
 	}
 }
+
 
 int ft_loop_hook(t_cub *cub)
 {

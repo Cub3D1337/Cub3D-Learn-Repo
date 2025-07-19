@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 15:46:22 by abnsila           #+#    #+#             */
-/*   Updated: 2025/07/16 13:24:59 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/07/19 11:57:03 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static void	setup_dda(t_dda *dda, t_pointF ply_pos, t_pointF ray_dir)
 	dda->unit.y = fabs(1 / ray_dir.y);
 	dda->hit = false;
 	dda->max_steps = fmax(MAP_WIDTH, MAP_HEIGHT) * 2;
+	dda->side = 0;
 	setup_step(dda, ray_dir);
 	if (ray_dir.x < 0)
 		dda->hypotenuse_dist.x = ((ply_pos.x / MAP_SIZE) - dda->map.x)

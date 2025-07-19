@@ -6,12 +6,16 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 12:15:00 by abnsila           #+#    #+#             */
-/*   Updated: 2025/07/10 20:07:08 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/07/19 12:02:49 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SETTINGS_H
 # define SETTINGS_H
+
+#ifndef M_PI
+#    define M_PI 3.14159265358979323846
+#endif
 
 # define WIDTH 1440
 # define HEIGHT 720

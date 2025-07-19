@@ -5,7 +5,7 @@ LDFLAGS =		-L./Libft -lft
 
 INC_DIR =		./includes
 LIBFT_DIR =		./Libft
-SRC_DIR =		./srcs_V1
+SRC_DIR =		./srcs
 
 INCLUDES =		-I${INC_DIR} -I./Libft/includes
 LIBFT =			$(LIBFT_DIR)/libft.a
